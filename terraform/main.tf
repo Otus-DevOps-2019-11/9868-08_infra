@@ -8,10 +8,15 @@ provider "google" {
   version = "2.15"
   # ID проекта
   project = var.project
-  region = var.region
+  region  = var.region
 }
 
-
+# create VPC
+resource "google_compute_network" "vpc" {
+  name                    = "reddit-vpc"
+  auto_create_subnetworks = "false"
+  routing_mode            = "GLOBAL"
+}
 
 resource "google_compute_instance" "app" {
   name         = "reddit-app"
@@ -30,9 +35,8 @@ resource "google_compute_instance" "app" {
   }
 
   metadata = {
-    # путь до публичного ключа
-    ssh-keys = "appuser:${file(var.public_key_path)}"
-  }
+  ssh-keys = "appuser:${file(var.public_key_path)}\nappuser1:${file(var.public_key_path)}\nappuser_web:${file(var.public_key_path)}" }
+
   connection {
     type  = "ssh"
     host  = self.network_interface[0].access_config[0].nat_ip
@@ -50,17 +54,17 @@ resource "google_compute_instance" "app" {
   }
 }
 
-resource "google_compute_firewall" "firewall_puma" {
-  name = "allow-puma-default"
-  # Название сети, в которой действует правило
-  network = "default"
-  # Какой доступ разрешить
-  allow {
-    protocol = "tcp"
-    ports    = ["9292"]
-  }
-  # Каким адресам разрешаем доступ
-  source_ranges = ["0.0.0.0/0"]
-  # Правило применимо для инстансов с перечисленными тэгами
-  target_tags = ["reddit-app"]
-}
+#resource "google_compute_firewall" "firewall_puma" {
+#  name = "allow-puma-default"
+#  # Название сети, в которой действует правило
+#  network = "default"
+#  # Какой доступ разрешить
+#  allow {
+#    protocol = "tcp"
+#    ports    = ["9292"]
+#  }
+#  # Каким адресам разрешаем доступ
+#  source_ranges = ["0.0.0.0/0"]
+#  # Правило применимо для инстансов с перечисленными тэгами
+#  target_tags = ["reddit-app"]
+#}
