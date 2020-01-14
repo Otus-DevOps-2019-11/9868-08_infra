@@ -22,3 +22,24 @@ variable disk_image {
 variable app_domain {
   description = "otus.ru"
 }
+
+variable app_name {
+  description = "reddit"
+}
+
+variable app_environment {
+  description = "reddit"
+}
+# Google Cloud connection & authentication and Application configuration | variables-auth.tf
+
+# GCP authentication file
+variable "gcp_auth_file" {
+  type = string
+  description = "credentals.json"
+}
+
+
+variable "app_node_count" {
+  type = string
+  description = "3"
+}
