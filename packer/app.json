@@ -1,26 +1,34 @@
 {
-   "builders": [
-   {
-      "type": "googlecompute",
-      "project_id": "infra-986808",
-      "image_name": "reddit-base-{{timestamp}}",
-      "image_family": "reddit-base",
-      "source_image_family": "ubuntu-1604-lts",
-      "zone": "europe-west1-b",
-      "ssh_username": "appuser",
-      "machine_type": "f1-micro"
-   }
-],
-"provisioners": [
-   {
-   "type": "shell",
-   "script": "scripts/install_ruby.sh",
-   "execute_command": "sudo {{.Path}}"
-   },
-   {
-   "type": "shell",
-   "script": "scripts/install_mongodb.sh",
-   "execute_command": "sudo {{.Path}}"
-   }
-]
+    "variables": {
+        "project_id": "infra-986808",
+        "machine_type": "f1-micro",
+        "image_description": "Ubuntu 16.04 with Ruby",
+        "image_family": "reddit-app-base",
+        "source_image_family": "ubuntu-1604-lts",
+        "disk_size": "10",
+        "disk_type": "pd-standard",
+        "network": "default"
+    },
+    "builders": [
+        {
+            "type": "googlecompute",
+            "project_id": "{{user `project_id`}}",
+            "machine_type": "{{user `machine_type`}}",
+            "image_name": "reddit-app-base-{{timestamp}}",
+            "image_description": "{{user `image_description`}}",
+            "image_family": "{{user `image_family`}}",
+            "source_image_family": "{{user `source_image_family`}}",
+            "zone": "europe-west1-b",
+            "ssh_username": "appuser",
+            "disk_size": "{{user `disk_size`}}",
+            "disk_type": "{{user `disk_type`}}",
+            "network": "{{user `network`}}"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "ansible",
+            "playbook_file": "ansible/playbooks/packer_app.yml"
+        }
+    ]
 }

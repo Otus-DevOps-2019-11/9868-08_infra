@@ -1,12 +1,12 @@
 dinky:
   hosts:
     appserver:
-         ansible_host: 10.132.0.16
+         ansible_host: 
 reddit-app:
   hosts:
     appserver:
-         ansible_host: 10.132.0.38
+         ansible_host: 35.195.144.72
 reddit-db:
   hosts:
     appserver:
-         ansible_host: 10.132.0.37
+         ansible_host: 35.233.29.89

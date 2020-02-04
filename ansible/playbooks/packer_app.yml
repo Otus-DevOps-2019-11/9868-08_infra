@@ -1,0 +1,14 @@
+---
+- name: Configure App
+  hosts: reddit-app
+  become: true
+  tasks:
+    - name: Install ruby and bundler
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      loop:
+        - ruby-full
+        - ruby-bundler
+        - build-essential

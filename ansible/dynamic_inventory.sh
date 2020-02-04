@@ -5,7 +5,7 @@
 # be called per host otherwise.
 
 rm inventory.yml 2>/dev/null;rm tmp.txt 2>/dev/null
-gcloud compute instances list | awk '{print  $1, $4}'|tail -n +2 >tmp.txt
+gcloud --format="value(name,networkInterfaces[0].accessConfigs[0].natIP)" compute instances list >tmp.txt
 
 
 if [[ $1 == "--list" ]]; then
