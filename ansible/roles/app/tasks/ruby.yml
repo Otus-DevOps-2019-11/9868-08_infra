@@ -1,0 +1,11 @@
+---
+- name: Install ruby, bundler and required packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+    - ruby-full
+    - ruby-bundler
+    - build-essential
+  tags: packer-ruby
