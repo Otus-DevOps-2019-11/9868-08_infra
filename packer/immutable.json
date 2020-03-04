@@ -9,7 +9,7 @@
       "zone": "europe-west1-b",
       "ssh_username": "appuser",
       "machine_type": "f1-micro",
-      "disk_name": "reddit-base-1578467159"
+      "disk_name": "projects/forward-karma-262407/global/images/reddit-base-1578467159"
 
    }
 ]
