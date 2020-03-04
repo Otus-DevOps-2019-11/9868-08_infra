@@ -1,5 +1,4 @@
 # рабочий проект
-
 variable project {
   description = "infra-986808"
   default     = "infra-986808"
@@ -38,7 +37,6 @@ variable app_name {
 
 variable app_environment {
   description = "reddit"
-
   default     = "reddit"
 }
 
