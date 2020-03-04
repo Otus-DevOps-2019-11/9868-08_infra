@@ -1,7 +1,6 @@
 
 provider "google" {
   version = "2.15"
-=======
 terraform {
   # Версия terraform
   required_version = "0.12.19"
@@ -11,10 +10,6 @@ provider "google" {
   # Версия провайдера
   version = "2.15"
   # ID проекта
-  project = var.project
-  region  = var.region
-}
-
 
 module "app" {
   source          = "./modules/app"
@@ -22,7 +17,6 @@ module "app" {
   #  zone            = var.zone
   app_disk_image = var.app_disk_image
 }
-
 module "db" {
   source          = "./modules/db"
   public_key_path = var.public_key_path
@@ -35,7 +29,6 @@ module "vpc" {
   source_ranges = ["80.250.215.124/32"]
 }
 
-=======
 # create VPC
 resource "google_compute_network" "vpc" {
   name                    = "reddit-vpc"

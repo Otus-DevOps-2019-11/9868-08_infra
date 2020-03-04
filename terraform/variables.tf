@@ -5,6 +5,7 @@ variable project {
   default     = "infra-986808"
 }
 
+
 # значение по умолчанию региона
 variable region {
   description = "Значение по умолчанию Region"
@@ -34,33 +35,42 @@ variable app_domain {
 variable app_name {
   description = "reddit"
   default     = "reddit"
-=======
-variable project { description = "infra-986808" }
+
+ variable project { description = "infra-986808" }
+
 
 # значение по умолчанию региона
 variable region {
-  description = "Region"
-  # Значение по умолчанию
-  default = "europe-west1"
+  description = "Значение по умолчанию Region"
+  default     = "europe-west1"
 }
 
-# ключи для подключения к хосту
 variable public_key_path {
-  # Описание переменной
-  description = "~/.ssh/appuser.pub"
+  description = "# ключи для подключения к хосту ~/.ssh/appuser"
+  default     = "~/.ssh/appuser.pub"
 }
 
-# диск с образом системы (заготовлен заранее)
+variable public_key {
+  default = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAz/rcMpufleSEpnDF+Mz66A7Y/S4osC+4L/FqQUc+laUmKhIg8DqUhDn7bzKTXXjfObL4eHGUcYJxGaLgwPQL/T3R1Yq+SfsLSmpr2OvBnk3Sw8Di8sA935t0bKL1P+aWfnJr3YrpNMdKduIQsLTWb3NFrYwZLvnScJL1EVSgqVREVdUti0KUfa+1YEgEZ9iM930jWUmwUmWg0fpubVqT/DHcSUdWXSaJFNyencFJxNG12CsnwjV0Y1qlV7ugoRjVPcWaTk/4XQqRFLeeb0bwvnLohv1T+J24KFNo3P7pTdc+KjJVhd3kSGUPZ3r33HPPVLDXeNd/nwHX0fNgWodlRQ== appuser"
+}
+
 variable disk_image {
-  description = "projects/forward-karma-262407/global/images/reddit-base-1578467159"
+  description = "диск с образом системы (заготовлен заранее)"
+  default     = "projects/forward-karma-262407/global/images/reddit-base-1578467159"
 }
 
 variable app_domain {
-  description = "otus.ru"
+  description = "неизвостно как используется"
+  default     = "otus.ru"
 }
+
 
 variable app_name {
   description = "reddit"
+
+
+
+  default     = "reddit"
 
 }
 
@@ -89,6 +99,7 @@ variable private_key {
 variable reddit_db_ip {
   description = "Internal IP address of reddit-db instance"
   default     = "0.0.0.0"
+
 }
 
 variable provisioners_enabled {
@@ -99,19 +110,21 @@ variable provisioners_enabled {
 
 variable app_disk_image {
   default = "projects/forward-karma-262407/global/images/reddit-base-1578467159"
-=======
-}
-# Google Cloud connection & authentication and Application configuration | variables-auth.tf
 
-# GCP authentication file
-variable "gcp_auth_file" {
-  type = string
-  description = "credentals.json"
+}
+
+variable provisioners_enabled {
+  description = "Provisoners toggle"
+  default     = "3"
 }
 
 
 variable "app_node_count" {
   type = string
   description = "3"
+
+
+variable app_disk_image {
+  default = "projects/forward-karma-262407/global/images/reddit-base-1578467159"
 
 }
